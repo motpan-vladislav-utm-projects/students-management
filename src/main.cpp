@@ -1,5 +1,6 @@
-#include <windows.h>
+#include <Windows.h>
 #include <cstdio>
+#include "app.h"
 
 CONSOLE_SCREEN_BUFFER_INFO csbi;
 HANDLE hStdOutput;
@@ -8,9 +9,12 @@ BOOL bUsePause;
 int main() {
     hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
     if (!GetConsoleScreenBufferInfo(hStdOutput, &csbi)) {
-        printf("GetConsoleScreenBufferInfo failed: %lu\n", GetLastError());
+        fprintf(stderr, "Get console screen buffer info failed: %lu\n", GetLastError());
         return EXIT_FAILURE;
     }
+
+    // init app
+    initApp();
 
     // if cursor position is (0,0) then use pause
     bUsePause = ((!csbi.dwCursorPosition.X) &&
