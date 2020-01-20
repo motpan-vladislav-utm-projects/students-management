@@ -9,7 +9,6 @@
 using namespace std;
 
 class Student {
-
  public:
   int id;
   string firstName;
