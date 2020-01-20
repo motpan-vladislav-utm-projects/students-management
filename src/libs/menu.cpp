@@ -90,12 +90,3 @@ void Menu::gotoXY(int x, int y) {
   CursorPosition.Y = y;
   SetConsoleCursorPosition(console.handle, CursorPosition);
 }
-
-void initMenu() {
-  Menu::ActionType exitAction{"Quit", []() {}};
-
-  Menu::CallbacksType callbacks{};
-
-  Console console(GetStdHandle(STD_OUTPUT_HANDLE));
-  Menu{"Students Management", console, exitAction, callbacks}.init();
-}

@@ -13,8 +13,6 @@
 
 using namespace std;
 
-void initMenu();
-
 class Menu {
  private:
   bool running{};
