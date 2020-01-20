@@ -12,7 +12,7 @@
 using namespace std;
 
 Menu::Menu(string name, Console console, ActionType exitAction, CallbacksType callbacks)
-    : name(std::move(name)), console(console), exitAction(std::move(exitAction)), callbacks(std::move(callbacks)) {};
+    : name(std::move(name)), console(console), exitAction(std::move(exitAction)), callbacks(std::move(callbacks)) {}
 
 void Menu::init() {
   console.clear();
