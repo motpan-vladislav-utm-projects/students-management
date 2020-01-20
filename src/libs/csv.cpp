@@ -9,10 +9,24 @@
 
 using namespace std;
 
-void saveAsCSV(list<string> data, ofstream &file) {
-  list<string>::iterator currentData;
+void saveAsCSV(CSVWriteData data, ofstream &file) {
+  CSVWriteData::iterator currentData;
   for (currentData = data.begin(); currentData != data.end(); ++currentData) {
-    file << currentData->c_str();
+    string tempData = *currentData;
+    size_t found;
+
+    found = tempData.find('"');
+    if (found != string::npos) {
+      replaceAll(tempData, "\"", "\"\"");
+    }
+
+    found = tempData.find(',');
+    if (found != string::npos) {
+      tempData.insert(0, "\"");
+      tempData += '"';
+    }
+
+    file << tempData;
 
     if ((currentData != data.end()) && (currentData != --data.end())) {
       file << ",";
@@ -33,7 +47,13 @@ CSVDataType readFromCSV(ifstream &file) {
 
     for (string match: matches) {
       if (match[0] == '"' && match[match.size() - 1] == '"') {
-        match = unquote(match);
+        match.erase(0, 1);
+        match.erase(match.size() - 1);
+      }
+
+      size_t found = match.find("\"\"");
+      if (found != string::npos) {
+        replaceAll(match, "\"\"", "\"");
       }
 
       lineData.push_back(match);

@@ -5,18 +5,14 @@
 #include "strings.hpp"
 
 #include <iostream>
-#include <iomanip>
-#include <sstream>
 
-std::string quote(const std::string &s) {
-  std::stringstream ss;
-  ss << std::quoted(s);
-  return ss.str();
-}
+using namespace std;
 
-std::string unquote(const std::string &s) {
-  std::string result;
-  std::stringstream ss(s);
-  ss >> std::quoted(result);
-  return result;
+void replaceAll(std::string &data, const std::string &toSearch, const std::string &replaceStr) {
+  size_t pos = data.find(toSearch);
+
+  while (pos != std::string::npos) {
+    data.replace(pos, toSearch.size(), replaceStr);
+    pos = data.find(toSearch, pos + replaceStr.size());
+  }
 }

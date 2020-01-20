@@ -18,7 +18,7 @@ Student::Student(string firstName, string lastName, int id) {
 }
 
 list<string> Student::serialize() {
-  return list<string>{to_string(id), quote(firstName), quote(lastName)};
+  return list<string>{to_string(id), firstName, lastName};
 }
 
 Student Student::deserialize(vector<string> data) {

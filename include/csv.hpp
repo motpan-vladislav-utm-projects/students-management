@@ -13,5 +13,5 @@ using CSVWriteData = list<string>;
 using CSVLineType = vector<string>;
 using CSVDataType = list<CSVLineType>;
 
-void saveAsCSV(list<string> data, ofstream &file);
+void saveAsCSV(CSVWriteData data, ofstream &file);
 CSVDataType readFromCSV(ifstream &file);

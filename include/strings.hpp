@@ -5,5 +5,4 @@
 #include <string>
 #include <iomanip>
 
-std::string quote(const std::string &s);
-std::string unquote(const std::string &s);
+void replaceAll(std::string &data, const std::string &toSearch, const std::string &replaceStr);
