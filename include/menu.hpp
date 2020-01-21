@@ -20,7 +20,7 @@ class Menu {
   int currentItem{};
 
  public:
-  using CallbackType = function<void()>;
+  using CallbackType = function<string()>;
   using ActionType = tuple<string, CallbackType>;
   using CallbacksType = vector<ActionType>;
 
@@ -28,7 +28,7 @@ class Menu {
   Console console;
   COORD CursorPosition{};
   CallbacksType callbacks;
-  ActionType exitAction{"Exit", []() {}};
+  ActionType exitAction{"Exit", []() { return ""; }};
 
   explicit Menu(string name, Console console, ActionType exitAction, CallbacksType callbacks);
 

@@ -27,7 +27,7 @@ void Menu::init() {
   while (running) {
     currentItem = 0;
 
-    gotoXY(1, currentItem);
+    gotoXY(0, currentItem);
     printf("%s", name.c_str());
     currentItem += 1;
 
@@ -40,7 +40,7 @@ void Menu::init() {
       }
 
       currentItem += 1;
-      gotoXY(1, currentItem);
+      gotoXY(0, currentItem);
 
       printf("%d. %s", currentItem - 1, actionName->c_str());
 
@@ -72,15 +72,25 @@ void Menu::init() {
     }
 
     if (GetAsyncKeyState(VK_RETURN) & 0x8000) { // NOLINT(hicpp-signed-bitwise)
-      gotoXY(1, itemsCount + 3);
+      gotoXY(0, itemsCount + 3);
       printf("%c[2K", 27);
 
       CallbackType const actionCallback = get<1>(callbacks.at(listItem));
-      actionCallback();
+      string const message = actionCallback();
+
+      if (!message.empty()) {
+        printf("%s", message.c_str());
+      }
 
       if (listItem + 1 == itemsCount) {
         running = false;
       }
+    }
+
+    if (listItem + 1 != itemsCount) {
+      printf("\nPress any key to continue...");
+      system("pause > nul");
+      console.clear();
     }
   }
 }
