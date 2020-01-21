@@ -4,7 +4,9 @@
 
 #include "console.hpp"
 
-Console::Console(HANDLE console) : handle(console) {}
+Console::Console(HANDLE console) {
+  this->handle = console ? console : GetStdHandle(STD_OUTPUT_HANDLE);
+}
 
 void Console::setColor(int foreground, int background) {
   CONSOLE_SCREEN_BUFFER_INFO Info;
@@ -37,5 +39,5 @@ void Console::clear() {
       screen.dwSize.X * screen.dwSize.Y, topLeft, &written
   );
 
-  SetConsoleCursorPosition(handle, topLeft);
+  // SetConsoleCursorPosition(handle, topLeft);
 }

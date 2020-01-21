@@ -58,7 +58,7 @@ class Console {
   static int const YELLOW = 14;
   static int const INTENSE_WHITE = 15;
 
-  explicit Console(HANDLE console);
+  explicit Console(HANDLE console = nullptr);
   void setColor(int foreground = WHITE, int background = BG_BLACK);
   void resetColor();
   void clear();
