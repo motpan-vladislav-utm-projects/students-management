@@ -9,14 +9,15 @@ using namespace std;
 
 class StudentsStore {
  public:
-  using StudentsType = list<Student>;
+  using StudentsType = vector<Student>;
   string storeFilePath;
 
-  StudentsType getStudents();
+  StudentsType getStudents(bool const &sort = false);
   void setStudents(StudentsType studentsData);
   void addStudents(StudentsType studentsData);
   void updateStore(bool force = false);
   void initStore(string filePath);
+  void syncData();
 
  private:
   StudentsType students;
