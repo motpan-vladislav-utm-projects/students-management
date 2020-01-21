@@ -37,7 +37,7 @@ void saveAsCSV(CSVWriteData data, ofstream &file) {
 }
 
 CSVDataType readFromCSV(ifstream &file) {
-  string const CSV_DATA_MATCH = R"(((?:\".+?\")|(?:[^,]))(?:\,|$))";
+  string const CSV_DATA_MATCH = R"(((?:\".+?\")|(?:[^,]+?))(?:\,|$))";
   CSVDataType data{};
   string line;
 
@@ -55,7 +55,6 @@ CSVDataType readFromCSV(ifstream &file) {
       if (found != string::npos) {
         replaceAll(match, "\"\"", "\"");
       }
-
       lineData.push_back(match);
     }
 
