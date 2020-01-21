@@ -14,7 +14,7 @@ class Student {
   string firstName;
   string lastName;
 
-  Student(string firstName, string lastName, int id = NULL);
+  explicit Student(string firstName = "", string lastName = "", int id = NULL);
 
   list<string> serialize();
   static Student deserialize(vector<string> data);
